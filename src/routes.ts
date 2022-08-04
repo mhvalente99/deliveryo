@@ -9,6 +9,7 @@ import { CreateDeliveryController } from "./modules/deliveries/useCases/createDe
 import { FindAllAvailableDeliveryController } from "./modules/deliveries/useCases/findAllAvailableDelivery/FindAllAvailableDeliveryController";
 import { UpdateDeliverymanController } from "./modules/deliveries/useCases/updateDeliveryman/UpdateDeliverymanController";
 import { CreateDeliverymanController } from "./modules/deliveryman/useCases/createDeliveryman/CreateDeliverymanController";
+import { FindAllDeliveriesDeliverymanController } from "./modules/deliveryman/useCases/findAllDeliveriesDeliveryman/FindAllDeliveriesDeliverymanController";
 
 const routes = Router();
 
@@ -18,6 +19,7 @@ const findAllDeliveriesClientController = new FindAllDeliveriesClientController(
 
 const createDeliverymanController = new CreateDeliverymanController();
 const authenticateDeliverymanController = new AuthenticateDeliverymanController();
+const findAllDeliveriesDeliverymanController = new FindAllDeliveriesDeliverymanController();
 
 const createDeliveryController = new CreateDeliveryController();
 const findAllAvailableDeliveryController = new FindAllAvailableDeliveryController();
@@ -25,10 +27,11 @@ const updateDeliverymanController = new UpdateDeliverymanController();
 
 routes.post("/client", createClientController.handle);
 routes.post("/client/authenticate", authenticateClientController.handle);
-routes.get("/client/deliveries", [ensureAuthenticateClient], findAllDeliveriesClientController.handle);
+routes.get("/client/deliveries", [ ensureAuthenticateClient ], findAllDeliveriesClientController.handle);
 
 routes.post("/deliveryman", createDeliverymanController.handle);
 routes.post("/deliveryman", authenticateDeliverymanController.handle);
+routes.get("/deliveryman", [ ensureAuthenticateDeliveryman ], findAllDeliveriesDeliverymanController.handle);
 
 routes.post("/delivery", [ ensureAuthenticateClient ], createDeliveryController.handle);
 routes.get("/delivery/available", [ ensureAuthenticateDeliveryman ], findAllAvailableDeliveryController.handle);
