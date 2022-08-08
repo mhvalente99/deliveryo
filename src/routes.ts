@@ -32,7 +32,7 @@ routes.post("/client/authenticate", authenticateClientController.handle);
 routes.get("/client/deliveries", [ ensureAuthenticateClient ], findAllDeliveriesClientController.handle);
 
 routes.post("/deliveryman", createDeliverymanController.handle);
-routes.post("/deliveryman", authenticateDeliverymanController.handle);
+routes.post("/deliveryman/authenticate", authenticateDeliverymanController.handle);
 routes.get("/deliveryman", [ ensureAuthenticateDeliveryman ], findAllDeliveriesDeliverymanController.handle);
 
 routes.post("/delivery", [ ensureAuthenticateClient ], createDeliveryController.handle);
