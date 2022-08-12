@@ -1,6 +1,7 @@
-import { prisma } from "../../../../database/prismaClient";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
+
+import { prisma } from "../../../../database/prismaClient";
 
 interface IAuthenticateDeliveryman {
   username: string;
@@ -11,8 +12,8 @@ export class AuthenticateDeliverymanUseCase {
   async execute({ username, password }: IAuthenticateDeliveryman) {
     const deliveryman = await prisma.deliveryman.findFirst({
       where: {
-        username
-      }
+        username,
+      },
     });
 
     if (!deliveryman) {
@@ -27,9 +28,9 @@ export class AuthenticateDeliverymanUseCase {
 
     const token = sign({ username }, "4febcdb035827f973f42518c2680d7e81", {
       subject: deliveryman.id,
-      expiresIn: "1d"
+      expiresIn: "1d",
     });
 
-    return { token }
+    return { token };
   }
 }

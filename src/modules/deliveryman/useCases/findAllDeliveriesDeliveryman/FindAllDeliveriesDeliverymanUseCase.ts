@@ -10,7 +10,7 @@ export class FindAllDeliveriesDeliverymanUseCase {
         id: true,
         username: true,
         deliveries: true,
-      }
+      },
     });
 
     return deliveries;

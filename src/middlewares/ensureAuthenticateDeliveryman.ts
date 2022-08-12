@@ -5,7 +5,11 @@ interface IPayload {
   sub: string;
 }
 
-export async function ensureAuthenticateDeliveryman(request: Request, response: Response, next: NextFunction) {
+export async function ensureAuthenticateDeliveryman(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -17,7 +21,10 @@ export async function ensureAuthenticateDeliveryman(request: Request, response: 
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub } = verify(token, "4febcdb035827f973f42518c2680d7e81") as IPayload;
+    const { sub } = verify(
+      token,
+      "4febcdb035827f973f42518c2680d7e81"
+    ) as IPayload;
 
     request.id_deliveryman = sub;
 

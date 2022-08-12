@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { CreateDeliverymanUseCase } from "./CreateDeliverymanUseCase";
 
 export class CreateDeliverymanController {
@@ -9,7 +10,7 @@ export class CreateDeliverymanController {
 
     const result = await createDeliverymanUseCase.execute({
       username,
-      password
+      password,
     });
 
     return response.json(result);

@@ -11,7 +11,7 @@ export class CreateDeliveryUseCase {
       data: {
         item_name,
         id_client,
-      }
+      },
     });
 
     return delivery;

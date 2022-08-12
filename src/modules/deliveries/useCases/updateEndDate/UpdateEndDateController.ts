@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+
 import { UpdateEndDateUseCase } from "./UpdateEndDateUseCase";
 
 export class UpdateEndDateController {
-  async handle (request: Request, response: Response) {
+  async handle(request: Request, response: Response) {
     const { id_deliveryman } = request;
     const { id } = request.params;
 
@@ -10,7 +11,7 @@ export class UpdateEndDateController {
 
     const delivery = await updateEndDateUseCase.execute({
       id_delivery: id,
-      id_deliveryman
+      id_deliveryman,
     });
 
     return response.json(delivery);

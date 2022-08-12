@@ -1,4 +1,5 @@
 import { hash } from "bcrypt";
+
 import { prisma } from "../../../../database/prismaClient";
 
 interface ICreateDeliveryman {
@@ -12,9 +13,9 @@ export class CreateDeliverymanUseCase {
       where: {
         username: {
           equals: username,
-          mode: "insensitive"
-        }
-      }
+          mode: "insensitive",
+        },
+      },
     });
 
     if (deliverymanExists) {
@@ -27,7 +28,7 @@ export class CreateDeliverymanUseCase {
       data: {
         username,
         password: hashPassword,
-      }
+      },
     });
 
     return deliveryman;

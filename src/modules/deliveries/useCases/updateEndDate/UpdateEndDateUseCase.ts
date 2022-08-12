@@ -10,11 +10,11 @@ export class UpdateEndDateUseCase {
     const result = await prisma.deliveries.updateMany({
       where: {
         id: id_delivery,
-        id_deliveryman: id_deliveryman
+        id_deliveryman,
       },
       data: {
         end_at: new Date(),
-      }
+      },
     });
 
     return result;

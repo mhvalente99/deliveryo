@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+
 import { UpdateDeliverymanUseCase } from "./UpdateDeliverymanUseCase";
 
 export class UpdateDeliverymanController {
-  async handle (request: Request, response: Response) {
+  async handle(request: Request, response: Response) {
     const { id_deliveryman } = request;
     const { id } = request.params;
 
@@ -10,7 +11,7 @@ export class UpdateDeliverymanController {
 
     const delivery = await updateDeliverymanUseCase.execute({
       id_delivery: id,
-      id_deliveryman
+      id_deliveryman,
     });
 
     return response.json(delivery);

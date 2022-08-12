@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { CreateClientUseCase } from "./CreateClientUseCase";
 
 export class CreateClientController {
@@ -9,7 +10,7 @@ export class CreateClientController {
 
     const result = await createClientUseCase.execute({
       username,
-      password
+      password,
     });
 
     return response.json(result);

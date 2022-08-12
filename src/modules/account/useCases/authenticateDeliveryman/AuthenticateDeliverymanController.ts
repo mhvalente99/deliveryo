@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+
 import { AuthenticateDeliverymanUseCase } from "./AuthenticateDeliverymanUseCase";
 
 export class AuthenticateDeliverymanController {
@@ -9,7 +10,7 @@ export class AuthenticateDeliverymanController {
 
     const result = await authenticateDeliverymanUseCase.execute({
       username,
-      password
+      password,
     });
 
     return response.json(result);
