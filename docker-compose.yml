@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+    database:
+        image: postgres
+        container_name: database_deliveryo
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=deliveryo
+            - POSTGRES_DB=deliveryo
+        volumes:
+            - pgdata:/data/postgres
+    app:
+        build: .
+        container_name: deliveryo
+        ports:
+            - 3000:3000
+            - 9229:9229
+        volumes:
+            - .:/usr/app
+        links:
+            - database
+        depends_on:
+            - database
+
+volumes:
+    pgdata:
+        driver: local
+
